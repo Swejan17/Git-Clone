@@ -13,12 +13,8 @@ const Explorepage = () => {
 		setRepos([])
 		
 		try {
-			const res = await fetch(`https://api.github.com/search/repositories?q=lanquage:${language}&sort=stars$order=dec&per_page_10`,{
-				headers:{
-					authorization:`token ${import.meta.env.VITE_GITHUB_API_KEY}`
-				}
-			});
-			const data = await res.json();
+			const res = await fetch (`http://localhost:5000/api/explore/repo/${language}`)
+			const {data} = await res.json();
 			setRepos(data.items)
 			setLanguage(language);
 
